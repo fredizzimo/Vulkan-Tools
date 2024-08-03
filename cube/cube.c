@@ -25,6 +25,7 @@
  * Author: Bill Hollings <bill.hollings@brenwill.com>
  */
 
+
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdarg.h>
@@ -33,6 +34,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <signal.h>
+#include <unistd.h>
 #include <errno.h>
 #if defined(VK_USE_PLATFORM_XLIB_KHR) || defined(VK_USE_PLATFORM_XCB_KHR)
 #include <X11/Xutil.h>
@@ -2774,6 +2776,7 @@ static void demo_run_xcb(struct demo *demo) {
     xcb_flush(demo->connection);
 
     while (!demo->quit) {
+        usleep(1000*5);
         xcb_generic_event_t *event;
 
         if (demo->pause) {
@@ -2829,6 +2832,7 @@ static void demo_run(struct demo *demo) {
     while (!demo->quit) {
         // Flush any commands to the server
         wl_display_flush(demo->display);
+        usleep(1000*5);
 
         if (demo->pause) {
             // block and wait for input

@@ -35,4 +35,8 @@ void main() {
    vec3 normal = normalize(cross(dX,dY));
    float light = max(0.0, dot(lightDir, normal));
    uFragColor = light * texture(tex, texcoord.xy);
+   for(int i=0;i<50000;++i)
+   {
+      uFragColor.x = clamp(uFragColor.x + i * 0.01, 0.0, 1.0);
+   }
 }
